@@ -1,6 +1,7 @@
 package com.javacourse.dynamiclist.dto;
 
 import com.javacourse.dynamiclist.entities.Game;
+import com.javacourse.dynamiclist.projectios.GameProjection;
 import jakarta.persistence.Column;
 
 public class GameDTO {
@@ -18,6 +19,14 @@ public class GameDTO {
         this.createdYear = gameEntity.getCreatedYear();
         this.imgUrl = gameEntity.getImgUrl();
         this.shortDescription = gameEntity.getShortDescription();
+    }
+
+    public GameDTO(GameProjection gameProjection){
+        this.id = gameProjection.getId();
+        this.title = gameProjection.getTitle();
+        this.createdYear = gameProjection.getCreatedYear();
+        this.imgUrl = gameProjection.getImgUrl();
+        this.shortDescription = gameProjection.getShortDescription();
     }
 
     public Long getId() {
