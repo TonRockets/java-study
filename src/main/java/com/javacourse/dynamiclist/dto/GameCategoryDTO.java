@@ -1,6 +1,7 @@
 package com.javacourse.dynamiclist.dto;
 
 import com.javacourse.dynamiclist.entities.GameCategory;
+import com.javacourse.dynamiclist.projectios.GameProjection;
 
 public class GameCategoryDTO {
     private Long id;
