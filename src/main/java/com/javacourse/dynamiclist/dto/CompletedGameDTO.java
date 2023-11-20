@@ -1,13 +1,10 @@
-package com.javacourse.dynamiclist.entities;
+package com.javacourse.dynamiclist.dto;
 
-import jakarta.persistence.*;
-import java.util.Objects;
+import com.javacourse.dynamiclist.entities.Game;
+import org.springframework.beans.BeanUtils;
 
-@Entity
-@Table(name = "game")
-public class Game {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class CompletedGameDTO {
+
     private Long id;
     private String title;
     private Integer createdYear;
@@ -15,26 +12,16 @@ public class Game {
     private String platforms;
     private Double score;
     private String imgUrl;
-
-    @Column(columnDefinition = "TEXT")
     private String shortDescription;
-
-    @Column(columnDefinition = "TEXT")
     private String longDescription;
 
-    public Game() {}
-
-    public Game(Long id, String title, Integer createdYear, String genre, String platforms, Double score, String imgUrl, String shortDescription, String longDescription) {
-        this.id = id;
-        this.title = title;
-        this.createdYear = createdYear;
-        this.genre = genre;
-        this.platforms = platforms;
-        this.score = score;
-        this.imgUrl = imgUrl;
-        this.shortDescription = shortDescription;
-        this.longDescription = longDescription;
+    public CompletedGameDTO() {
     }
+
+    public CompletedGameDTO(Game gameEntity) {
+        BeanUtils.copyProperties(gameEntity, this);
+    }
+
     public Long getId() {
         return id;
     }
@@ -55,8 +42,8 @@ public class Game {
         return createdYear;
     }
 
-    public void setCreatedYear(Integer year) {
-        this.createdYear = year;
+    public void setCreatedYear(Integer createdYear) {
+        this.createdYear = createdYear;
     }
 
     public String getGenre() {
@@ -71,7 +58,7 @@ public class Game {
         return platforms;
     }
 
-    public void setPlatforms(String platform) {
+    public void setPlatforms(String platforms) {
         this.platforms = platforms;
     }
 
@@ -105,18 +92,5 @@ public class Game {
 
     public void setLongDescription(String longDescription) {
         this.longDescription = longDescription;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Game game = (Game) o;
-        return Objects.equals(id, game.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
     }
 }
