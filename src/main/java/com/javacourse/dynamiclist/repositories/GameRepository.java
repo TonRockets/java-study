@@ -13,10 +13,10 @@ public interface GameRepository extends JpaRepository<Game, Long> {
 			SELECT
 			    game.id,
 			    game.title,
-			    game.created_year AS `year`,
+			    game.created_year AS createdYear,
 			    game.img_url AS imgUrl,
 			    game.short_description AS shortDescription,
-			    game_category_assoc.position,
+			    game_category_assoc.position
 			FROM
 			    game
 			INNER JOIN
